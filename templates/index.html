@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}SciWrite AI - Generate Publication-Ready Research Papers with AI{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-headline">Generate Publication-Ready Research Papers with AI</h1>
+        <p class="hero-subtitle">Leverage the power of Gemini and real-time literature grounding to accelerate your research workflow from idea to publication.</p>
+        <a href="{{ url_for('generate_page') }}" class="btn btn-primary btn-large">Start Generating Now</a>
+    </div>
+</section>
+
+<section id="features" class="features-grid">
+    <div class="feature-card">
+        <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>
+        </div>
+        <h3>Real Literature Grounding</h3>
+        <p>Pulls from the latest arXiv papers to ensure your work is contextually relevant and built upon a real academic foundation.</p>
+    </div>
+    <div class="feature-card">
+        <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg>
+        </div>
+        <h3>Gemini 1.5 Powered</h3>
+        <p>Utilizes Google's state-of-the-art Gemini 1.5 Flash model for nuanced, coherent, and high-quality academic writing.</p>
+    </div>
+    <div class="feature-card">
+        <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" /></svg>
+        </div>
+        <h3>Overleaf Ready</h3>
+        <p>Export your entire project, including figures and bibliography, as a single ZIP file ready for one-click import into Overleaf.</p>
+    </div>
+    <div class="feature-card">
+        <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z" /></svg>
+        </div>
+        <h3>LaTeX Export</h3>
+        <p>Get clean, structured, and ready-to-compile LaTeX source for full control and fine-tuning of your final manuscript.</p>
+    </div>
+    <div class="feature-card">
+        <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
+        </div>
+        <h3>Chart Generation</h3>
+        <p>Describe your desired charts in plain English and have them automatically generated and included in your paper.</p>
+    </div>
+    <div class="feature-card">
+        <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z" /></svg>
+        </div>
+        <h3>Research Workflow</h3>
+        <p>Follow a structured process from metadata and context definition to generation, ensuring a complete and coherent first draft.</p>
+    </div>
+</section>
+
+<section id="how-it-works" class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+        <div class="step">
+            <span>1</span>
+            <h3>Define Your Paper</h3>
+            <p>Fill out the metadata, research context, and bibliography. Provide the core ideas that will guide the AI.</p>
+        </div>
+        <div class="step">
+            <span>2</span>
+            <h3>Upload Figures</h3>
+            <p>Upload your existing figures and add captions. Describe any charts you want the AI to generate for you.</p>
+        </div>
+        <div class="step">
+            <span>3</span>
+            <h3>Generate & Refine</h3>
+            <p>The AI generates each section, grounded in arXiv literature. Review the output and download the LaTeX or Overleaf ZIP.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

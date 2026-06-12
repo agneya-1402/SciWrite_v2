@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Generation Results - {{ data.title }}{% endblock %}
+
+{% block content %}
+<div class="results-container">
+    <div class="results-header">
+        <div class="success-card">
+            <div class="success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+            </div>
+            <div class="success-content">
+                <h2>Generation Completed!</h2>
+                <p>Your paper, "{{ data.title }}", has been successfully generated.</p>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-label">Word Count</span>
+                <span class="stat-value">{{ data.total_words }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Sections</span>
+                <span class="stat-value">{{ data.sections|length }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Est. Pages</span>
+                <span class="stat-value">{{ data.estimated_pages }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Time</span>
+                <span class="stat-value">{{ data.generation_time }}s</span>
+            </div>
+        </div>
+
+        <div class="downloads-section">
+            <h3>Downloads</h3>
+            <div class="downloads-buttons">
+                <a href="{{ url_for('download_tex') }}" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="btn-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                    Download .TEX
+                </a>
+                <a href="{{ url_for('download_zip') }}" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="btn-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M9 13.5h6m-6 3h6m-6-3v-6A2.25 2.25 0 0 1 7.5 5.25h9A2.25 2.25 0 0 1 18.75 7.5v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 13.5v-6a2.25 2.25 0 0 1 2.25-2.25Z" /></svg>
+                    Download .ZIP
+                </a>
+                <a href="https://www.overleaf.com/docs?snip_uri={{ request.url_root.replace('http://', 'https://') }}api/download-zip" target="_blank" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="btn-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-4.5 0V6.375c0-.621.504-1.125 1.125-1.125h4.125" /></svg>
+                    Open in Overleaf
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="results-content">
+        <h3>Generated Content</h3>
+        <div class="accordion">
+            {% for section, content in data.sections.items() %}
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <span>{{ section }}</span>
+                    <span class="word-count">{{ data.word_counts[section] }} words</span>
+                    <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                </button>
+                <div class="accordion-content">
+                    <p>{{ content|replace('\n', '<br>')|safe }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <span>Raw LaTeX Source</span>
+                    <span class="word-count">{{ data.latex_source|length }} chars</span>
+                    <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                </button>
+                <div class="accordion-content">
+                    <pre class="latex-viewer"><code>{{ data.latex_source }}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
