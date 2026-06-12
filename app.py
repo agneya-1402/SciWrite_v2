@@ -4,16 +4,20 @@ import json
 import zipfile
 import re
 import logging
+import matplotlib
 from datetime import datetime
 from flask import Flask, render_template, request, session, jsonify, Response, send_from_directory, redirect, url_for, stream_with_context
 from dotenv import load_dotenv
-from google import genai
+import google as genai
 import requests
 import numpy as np
 import matplotlib.pyplot as plt
 import bibtexparser
 from bibtexparser.bparser import BibTexParser
 from bibtexparser.customization import author
+
+# Set Matplotlib backend to 'Agg' for headless environments
+matplotlib.use('Agg')
 
 load_dotenv()
 
@@ -45,8 +49,9 @@ except Exception as e:
     GEMINI_MODEL_NAME = None
 
 # --- Directory Setup ---
-GENERATED_DIR = os.path.join(app.static_folder, 'generated')
-UPLOADS_DIR = os.path.join(app.static_folder, 'uploads')
+# Use /tmp for serverless environments as it's writable and ephemeral
+GENERATED_DIR = os.path.join('/tmp', 'generated')
+UPLOADS_DIR = os.path.join('/tmp', 'uploads')
 os.makedirs(GENERATED_DIR, exist_ok=True)
 os.makedirs(UPLOADS_DIR, exist_ok=True)
 app.logger.info(f"Generated files directory: {GENERATED_DIR}")
